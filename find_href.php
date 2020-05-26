@@ -18,11 +18,12 @@ $ident=fgets($test);
 $command="mysql -u root -p12345 phones -sse 'SELECT item_url FROM phones_url where id=$ident'";
 $test=ssh2_exec($connection, $command);
 stream_set_blocking($test, true);
-$phone_url=fgets($test);
+$url=fgets($test);
 $command="mysql -u root -p12345 phones -sse 'DELETE FROM phones_url WHERE id=$ident'";
 ssh2_exec($connection, $command);
 //check 
-$imgContent = Curl_avito($url,$time_sleep,$mistakes);
+$time_sleep=rand(8,9);
+$imgContent = Curl_avito($url,$time_sleep);
 $avitoContact = new AvitoContact;
 $imgContent = explode('base64,', $imgContent)[1];
 $a = fopen('phone.png', 'wb');
