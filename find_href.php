@@ -9,6 +9,8 @@ else { die('Authentication Failed...'); }
 require_once 'simple_html_dom.php';
 require_once 'classes.php';
 require_once 'functions.php';
+$mistakes = fopen('mistakes.txt', 'a+');
+fwrite($mistakes, date('l jS \of F Y h:i:s A'));
 //достаем первый id
 $command="mysql -u root -p12345 phones -sse 'SELECT id FROM phones_url'";
 $test=ssh2_exec($connection, $command);
@@ -23,7 +25,7 @@ $command="mysql -u root -p12345 phones -sse 'DELETE FROM phones_url WHERE id=$id
 ssh2_exec($connection, $command);
 //check 
 $time_sleep=rand(8,9);
-$imgContent = Curl_avito($url,$time_sleep);
+$imgContent = Curl_avito($url,$time_sleep,$mistakes);
 $avitoContact = new AvitoContact;
 $imgContent = explode('base64,', $imgContent)[1];
 $a = fopen('phone.png', 'wb');
@@ -42,6 +44,6 @@ if ($result) {
     ssh2_exec($connection, $command);
   }
 }  
-
+fclose($mistakes);
 
 ?>
