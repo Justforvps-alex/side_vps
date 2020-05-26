@@ -10,9 +10,10 @@ curl_setopt($ch, CURLOPT_HEADER, 1);
 curl_setopt($ch, CURLOPT_USERAGENT, $useragent);
 $page = curl_exec($ch);
 $html=str_get_html($page);
+echo $html;
 curl_close($ch);
 sleep($time_sleep);
-return $html;
+$imgContent=$html;
 }
 function download_proxy($url)
 {
