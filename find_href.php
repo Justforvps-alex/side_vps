@@ -2,7 +2,7 @@
 ignore_user_abort(true);
 ini_set('max_execution_time', 0);
 set_time_limit(0);
-error_reporting(0);
+error_reporting(1);
 $connection = ssh2_connect( "ovz5.alexdumachev.mgqxn.vps.myjino.ru" , '49240'); 
 if (ssh2_auth_password( $connection , 'root', 'Qwerty12345')) { echo "Authentication Successful!\n"; } 
 else { die('Authentication Failed...'); }
