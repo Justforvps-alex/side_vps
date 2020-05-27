@@ -27,7 +27,7 @@ ssh2_exec($connection, $command);
 $time_sleep=rand(8,9);
 $phone_url=str_replace("
 ","",$phone_url);
-$imgContent=Curl_avito($phone_url,$time_sleep)
+$imgContent=Curl_avito($phone_url,$time_sleep);
 $avitoContact = new AvitoContact;
 $imgContent = explode('base64,', $imgContent)[1];
 $a = fopen('phone.png', 'wb');
