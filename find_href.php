@@ -12,10 +12,16 @@ require_once 'functions.php';
 $mistakes = fopen('mistakes.txt', 'a+');
 fwrite($mistakes, date('l jS \of F Y h:i:s A'));
 //достаем первый id
-$command="mysql -u root -p12345 phones -sse 'SELECT id FROM phones_url'";
-$test=ssh2_exec($connection, $command);
-stream_set_blocking($test, true);
-$ident=fgets($test);
+while(1){
+$phpstatus=file_get_contents('http://ovz5.alexdumachev.mgqxn.vps.myjino.ru/phpstatus.txt');
+  if($phpstatus=='done'){sleep(60);}
+  else{
+  $command="mysql -u root -p12345 phones -sse 'SELECT id FROM phones_url'";
+  $test=ssh2_exec($connection, $command);
+  stream_set_blocking($test, true);
+  $ident=fgets($test);
+  if($ident='' or $ident=NULL){sleep(5);}
+    else{
 //dostaem href
 $command="mysql -u root -p12345 phones -sse 'SELECT item_url FROM phones_url where id=$ident'";
 $test=ssh2_exec($connection, $command);
@@ -37,6 +43,7 @@ $image='phone.png';
 $result = $avitoContact->recognize('phone.png');
 if ($result) {
   $number=$result;
+  echo $number;
   $command="mysql -u root -p12345 phones -sse 'SELECT COUNT(*) FROM phones WHERE number='$number''";
   $test=ssh2_exec($connection, $command);
   stream_set_blocking($test, true);
@@ -45,7 +52,10 @@ if ($result) {
     $command="mysql -u root -p12345 phones -sse 'INSERT INTO phones (id, number) VALUES (NULL,'$number')'";
     ssh2_exec($connection, $command);
   }
-}  
+}
+}
+}
+}
 fclose($mistakes);
 
 ?>
