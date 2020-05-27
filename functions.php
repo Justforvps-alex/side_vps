@@ -11,6 +11,10 @@ curl_setopt($ch, CURLOPT_USERAGENT, $useragent);
 $page = curl_exec($ch);
 curl_close($ch);
 sleep($time_sleep);
+$check_2=strpos($page,'user_unauth');
+$check_3=strpos($page,'image64');
+if($check_2!==false or $check_3!==false){ continue; }
+else{ echo 'ban'; exit;}
 return $page;
 }
 function download_proxy($url)
