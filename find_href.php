@@ -25,7 +25,7 @@ $command="mysql -u root -p12345 phones -sse 'DELETE FROM phones_url WHERE id=$id
 ssh2_exec($connection, $command);
 //check 
 $time_sleep=rand(8,9);
-$imgContent = Curl_avito($url,$time_sleep,$mistakes);
+$imgContent = Curl_avito($url,$time_sleep);
 $avitoContact = new AvitoContact;
 $imgContent = explode('base64,', $imgContent)[1];
 $a = fopen('phone.png', 'wb');
