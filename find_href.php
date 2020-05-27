@@ -25,22 +25,9 @@ $command="mysql -u root -p12345 phones -sse 'DELETE FROM phones_url WHERE id=$id
 ssh2_exec($connection, $command);
 //check 
 $time_sleep=rand(8,9);
-$useragent = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/'.rand(60,72).'.0.'.rand(1000,9999).'.121 Safari/537.36';
-$ch = curl_init($phone_url);
-echo $phone_url;
-fwrite ($mistakes, $phone_url);
-curl_setopt($ch, CURLOPT_URL, $phone_url);
-curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_HEADER, 1);
-curl_setopt($ch, CURLOPT_USERAGENT, $useragent);
-$page = curl_exec($ch);
-curl_close($ch);
-sleep($time_sleep);
-echo $page;
-$imgContent=$page;
-echo $imgContent;
-sleep($time_sleep);
+$phone_url=str_replace("
+","",$phone_url);
+$imgContent=Curl_avito($phone_url,$time_sleep)
 $avitoContact = new AvitoContact;
 $imgContent = explode('base64,', $imgContent)[1];
 $a = fopen('phone.png', 'wb');
