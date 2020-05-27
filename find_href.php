@@ -6,9 +6,9 @@ error_reporting(1);
 $connection = ssh2_connect( "ovz5.alexdumachev.mgqxn.vps.myjino.ru" , '49240'); 
 if (ssh2_auth_password( $connection , 'root', 'Qwerty12345')) { echo "Authentication Successful!\n"; } 
 else { die('Authentication Failed...'); }
-require_once 'simple_html_dom.php';
-require_once 'classes.php';
-require_once 'functions.php';
+include  'simple_html_dom.php';
+include  'classes.php';
+include  'functions.php';
 $mistakes = fopen('mistakes.txt', 'a+');
 fwrite($mistakes, date('l jS \of F Y h:i:s A'));
 //достаем первый id
