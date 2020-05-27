@@ -13,7 +13,7 @@ $html=str_get_html($page);
 echo $html;
 curl_close($ch);
 sleep($time_sleep);
-$imgContent=$html;
+return $html;
 }
 function download_proxy($url)
 {
