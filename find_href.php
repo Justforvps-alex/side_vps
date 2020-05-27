@@ -49,7 +49,8 @@ if ($result) {
   stream_set_blocking($test, true);
   $unique=fgets($test);
   if($unique==0){
-    $command="mysql -u root -p12345 phones -sse 'INSERT INTO phones (id, number, vpn) VALUES (NULL, '$number', 'DE')'";
+    $vpn=1;
+    $command="mysql -u root -p12345 phones -sse 'INSERT INTO phones (id, number, vpn) VALUES (NULL, '$number', '$vpn')'";
     ssh2_exec($connection, $command);
   }
 }
