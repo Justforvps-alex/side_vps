@@ -16,7 +16,7 @@ while(1){
 $phpstatus=file_get_contents('http://ovz5.alexdumachev.mgqxn.vps.myjino.ru/phpstatus.txt');
   if($phpstatus=='done'){sleep(60);}
   else{
-  $command="mysql -u root -p12345 phones -sse 'SELECT id FROM phones_url WHERE vpn=9'";
+  $command="mysql -u root -p12345 phones -sse 'SELECT id FROM phones_url WHERE vpn=7'";
   $test=ssh2_exec($connection, $command);
   stream_set_blocking($test, true);
   $ident=fgets($test);
